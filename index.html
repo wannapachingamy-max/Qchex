@@ -3,24 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Check Q ร้านตั้ม - เช็คคิวงาน</title>
-
+    <title>Check Q ร้านตั้ม</title>
     <!-- Google Fonts & FontAwesome Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Mali:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
-            --pink-main: #ff9ebb;
-            --pink-soft: #ffc2d4;
-            --pink-light: #ffe5ec;
-            --pink-bg: #fff0f5;
-            --pink-deep: #e05297;
-            --white-glass: rgba(255, 255, 255, 0.85);
-            --text-color: #5a3e4d;
-            --card-shadow: 0 10px 30px rgba(230, 100, 150, 0.15);
+            --bg-color: #fdf2f5;
+            --pink-card-bg: #fde2eb;
+            --pink-card-border: #f9c2d1;
+            --pink-title: #eb688e;
+            --pink-text: #e76088;
+            --pink-main: #eb7b9b;
+            --pink-btn: #e57293;
+            --card-white: rgba(255, 255, 255, 0.95);
+            --shadow-soft: 0 8px 25px rgba(235, 123, 155, 0.1);
         }
 
         * {
@@ -31,335 +31,326 @@
         }
 
         body {
-            background-color: var(--pink-bg);
+            background-color: var(--bg-color);
             background-image: 
-                radial-gradient(circle at 10% 20%, rgba(255, 182, 193, 0.4) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(255, 218, 224, 0.5) 0%, transparent 20%),
-                radial-gradient(circle at 50% 50%, rgba(255, 240, 245, 1) 0%, rgba(255, 222, 233, 0.6) 100%);
-            background-attachment: fixed;
-            color: var(--text-color);
+                radial-gradient(#f7d2dd 1.2px, transparent 1.2px),
+                radial-gradient(#f7d2dd 1.2px, var(--bg-color) 1.2px);
+            background-size: 36px 36px;
+            background-position: 0 0, 18px 18px;
+            color: #55444b;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            padding: 30px 15px 0 15px;
         }
 
         .container {
-            max-width: 900px;
+            max-width: 800px;
             margin: 0 auto;
-            padding: 20px;
-            width: 100%;
             flex: 1;
+            width: 100%;
         }
 
-        /* --- Header Section with Cat Fur Texture Effect --- */
+        /* --- Header Section --- */
         header {
             text-align: center;
-            padding: 40px 20px;
-            background: var(--white-glass);
-            backdrop-filter: blur(10px);
-            border-radius: 30px;
-            box-shadow: var(--card-shadow);
-            border: 2px solid rgba(255, 255, 255, 0.8);
             margin-bottom: 25px;
-            position: relative;
-            overflow: hidden;
         }
 
-        header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,192,203,0.3) 0%, transparent 60%);
-            animation: rotateBg 20s linear infinite;
-            z-index: 0;
-        }
-
-        @keyframes rotateBg {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Cat Fur Textured Text */
-        .fur-title-container {
-            position: relative;
-            z-index: 1;
-            display: inline-block;
-        }
-
-        .fur-title {
-            font-family: 'Mali', cursive;
-            font-size: 3.2rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 50%, #e05297 100%);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            position: relative;
-            display: inline-block;
-            filter: drop-shadow(2px 4px 6px rgba(224, 82, 151, 0.2));
-        }
-
-        .fur-title::after {
-            content: 'Check Q ร้านตั้ม';
-            position: absolute;
-            left: 0;
-            top: 0;
-            z-index: -1;
-            background: repeating-linear-gradient(
-                45deg,
-                #ffb6c1,
-                #ffb6c1 2px,
-                #ff69b4 2px,
-                #ff69b4 4px,
-                #ff1493 4px,
-                #ff1493 5px
-            );
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            opacity: 0.3;
-            filter: blur(1px);
-        }
-
-        .subtitle {
-            position: relative;
-            z-index: 1;
-            background: #fff;
-            display: inline-block;
-            padding: 8px 22px;
-            border-radius: 50px;
-            margin-top: 15px;
-            font-size: 0.95rem;
-            color: #d84374;
-            box-shadow: 0 4px 15px rgba(255, 158, 187, 0.3);
-            border: 1px dashed var(--pink-soft);
-        }
-
-        /* --- Controls (Search & Filter) --- */
-        .controls-card {
-            background: var(--white-glass);
-            backdrop-filter: blur(10px);
-            padding: 20px;
-            border-radius: 20px;
-            box-shadow: var(--card-shadow);
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            margin-bottom: 25px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            justify-content: space-between;
+        .title-box {
+            display: inline-flex;
             align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: linear-gradient(180deg, #fde4ed 0%, #fbcfe0 100%);
+            border: 2px solid var(--pink-card-border);
+            border-radius: 24px;
+            padding: 16px 45px;
+            box-shadow: 0 4px 15px rgba(248, 194, 209, 0.4);
+            margin-bottom: 18px;
+        }
+
+        .title-box h1 {
+            font-family: 'Mali', cursive;
+            color: var(--pink-title);
+            font-size: 2.3rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .paw-icon {
+            color: #eb688e;
+            font-size: 1.3rem;
+        }
+
+        .subtitle-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #ffffff;
+            padding: 8px 24px;
+            border-radius: 50px;
+            font-size: 0.88rem;
+            color: #d15277;
+            box-shadow: 0 2px 10px rgba(235, 123, 155, 0.08);
+            border: 1px solid #f9d8e2;
+        }
+
+        .heart-icon {
+            color: #eb688e;
+        }
+
+        /* --- Search & Filters --- */
+        .controls-card {
+            background: var(--card-white);
+            border-radius: 25px;
+            padding: 12px 16px;
+            box-shadow: var(--shadow-soft);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            border: 1px solid #ffffff;
         }
 
         .search-box {
             position: relative;
             flex: 1;
-            min-width: 250px;
+            min-width: 220px;
         }
 
         .search-box input {
             width: 100%;
-            padding: 12px 20px 12px 45px;
+            padding: 10px 15px 10px 38px;
             border-radius: 50px;
-            border: 2px solid var(--pink-soft);
+            border: 1.5px solid #fce3eb;
             outline: none;
-            font-size: 0.95rem;
-            transition: all 0.3s;
-            background: rgba(255, 255, 255, 0.9);
-            color: var(--text-color);
+            font-size: 0.88rem;
+            background: #fff;
+            color: #66555c;
         }
 
         .search-box input:focus {
-            border-color: var(--pink-deep);
-            box-shadow: 0 0 10px rgba(224, 82, 151, 0.2);
+            border-color: var(--pink-main);
         }
 
         .search-box i {
             position: absolute;
-            left: 18px;
+            left: 14px;
             top: 50%;
             transform: translateY(-50%);
-            color: var(--pink-main);
-            font-size: 1.1rem;
+            color: #ccc;
+            font-size: 0.95rem;
         }
 
-        .filter-buttons {
+        .filter-tabs {
             display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
+            gap: 6px;
         }
 
-        .filter-btn {
-            border: none;
-            background: #fff;
-            padding: 8px 16px;
+        .tab-btn {
+            border: 1px solid #f7d5e0;
+            background: #ffffff;
+            padding: 7px 16px;
             border-radius: 50px;
-            cursor: pointer;
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             font-weight: 500;
-            color: var(--text-color);
-            border: 1px solid var(--pink-soft);
-            transition: all 0.3s;
+            color: #66555c;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
         }
 
-        .filter-btn:hover, .filter-btn.active {
-            background: var(--pink-main);
-            color: white;
-            border-color: var(--pink-main);
-            box-shadow: 0 4px 10px rgba(255, 158, 187, 0.4);
+        .tab-btn.active {
+            background: var(--pink-btn);
+            color: #ffffff;
+            border-color: var(--pink-btn);
+            box-shadow: 0 3px 10px rgba(229, 114, 147, 0.3);
         }
 
-        /* --- Table Section --- */
+        /* --- Stats Row --- */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: var(--card-white);
+            border-radius: 20px;
+            padding: 14px 10px;
+            text-align: center;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid #ffffff;
+        }
+
+        .stat-label {
+            font-size: 0.78rem;
+            margin-bottom: 4px;
+        }
+
+        .stat-card:nth-child(1) .stat-label { color: #88777e; }
+        .stat-card:nth-child(2) .stat-label { color: #d9822b; }
+        .stat-card:nth-child(3) .stat-label { color: #2b88d9; }
+        .stat-card:nth-child(4) .stat-label { color: #2bd97c; }
+
+        .stat-num {
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .stat-card:nth-child(1) .stat-num { color: #55444b; }
+        .stat-card:nth-child(2) .stat-num { color: #e67e22; }
+        .stat-card:nth-child(3) .stat-num { color: #3498db; }
+        .stat-card:nth-child(4) .stat-num { color: #2ecc71; }
+
+        /* --- Table Card --- */
         .table-card {
-            background: var(--white-glass);
-            backdrop-filter: blur(10px);
+            background: var(--card-white);
             border-radius: 25px;
-            box-shadow: var(--card-shadow);
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            overflow: hidden;
-            padding: 10px;
-        }
-
-        .table-container {
+            padding: 20px;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid #ffffff;
             overflow-x: auto;
+            margin-bottom: 30px;
         }
 
         table {
             width: 100%;
-            border-collapse: separate;
-            border-spacing: 0 10px;
+            border-collapse: collapse;
         }
 
         th {
-            padding: 15px;
-            color: var(--pink-deep);
-            font-size: 0.95rem;
+            color: var(--pink-title);
+            font-size: 0.85rem;
             font-weight: 600;
+            padding: 12px 10px;
+            border-bottom: 1.5px solid #fde8ed;
             text-align: left;
-            border-bottom: 2px solid var(--pink-light);
-        }
-
-        tbody tr {
-            background: #ffffff;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
-            border-radius: 15px;
-        }
-
-        tbody tr:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 158, 187, 0.25);
         }
 
         td {
-            padding: 16px;
-            font-size: 0.9rem;
+            padding: 16px 10px;
+            font-size: 0.85rem;
+            color: #44333a;
+            border-bottom: 1px solid #f8eef1;
             vertical-align: middle;
         }
 
-        td:first-child {
-            border-top-left-radius: 15px;
-            border-bottom-left-radius: 15px;
-            font-weight: 700;
-            color: var(--pink-deep);
-            text-align: center;
-            width: 70px;
+        tr:last-child td {
+            border-bottom: none;
         }
 
-        td:last-child {
-            border-top-right-radius: 15px;
-            border-bottom-right-radius: 15px;
+        .col-id {
+            color: var(--pink-title);
+            font-weight: 700;
+            width: 50px;
         }
 
         .badge {
-            padding: 6px 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px;
             border-radius: 50px;
-            font-size: 0.8rem;
-            font-weight: 600;
+            font-size: 0.78rem;
+            font-weight: 500;
+        }
+
+        .dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
             display: inline-block;
-            text-align: center;
         }
 
         .badge-waiting {
-            background-color: #fff4e6;
-            color: #d9480f;
-            border: 1px solid #ffd8a8;
+            background-color: #fef5e7;
+            color: #e67e22;
         }
+        .badge-waiting .dot { background-color: #e67e22; }
 
         .badge-doing {
-            background-color: #e7f5ff;
-            color: #1971c2;
-            border: 1px solid #a5d8ff;
+            background-color: #ebf5fb;
+            color: #2980b9;
         }
+        .badge-doing .dot { background-color: #2980b9; }
 
         .badge-done {
-            background-color: #ebfbee;
-            color: #2b8a3e;
-            border: 1px solid #b2f2bb;
+            background-color: #eafaf1;
+            color: #27ae60;
         }
+        .badge-done .dot { background-color: #27ae60; }
 
-        .loading-state, .empty-state {
+        .loading-text, .empty-text {
             text-align: center;
-            padding: 40px;
-            color: #b08294;
+            padding: 30px;
+            color: #b5a5ac;
         }
 
         /* --- Footer Section (ช่องทางติดต่อ) --- */
         footer {
-            margin-top: 40px;
-            background: var(--white-glass);
-            backdrop-filter: blur(10px);
+            margin-top: 20px;
+            background: var(--card-white);
             border-top-left-radius: 30px;
             border-top-right-radius: 30px;
-            padding: 30px 20px;
-            box-shadow: 0 -10px 30px rgba(230, 100, 150, 0.08);
-            border-top: 1px solid rgba(255, 255, 255, 0.8);
+            padding: 25px 20px 20px 20px;
+            box-shadow: 0 -5px 20px rgba(235, 123, 155, 0.08);
+            border-top: 1px solid #ffffff;
             text-align: center;
+            width: 100%;
         }
 
         .footer-title {
             font-family: 'Mali', cursive;
-            color: var(--pink-deep);
-            font-size: 1.2rem;
-            margin-bottom: 20px;
+            color: var(--pink-title);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
 
         .contact-links {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 12px;
             flex-wrap: wrap;
-            max-width: 600px;
-            margin: 0 auto;
+            max-width: 650px;
+            margin: 0 auto 15px auto;
         }
 
         .contact-card {
             background: #fff;
-            padding: 10px 20px;
+            padding: 8px 18px;
             border-radius: 50px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             text-decoration: none;
-            color: var(--text-color);
-            font-size: 0.88rem;
-            border: 1px solid var(--pink-soft);
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03);
-            transition: all 0.3s;
+            color: #55444b;
+            font-size: 0.85rem;
+            border: 1px solid #f8d7e3;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+            transition: all 0.2s ease;
         }
 
         .contact-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(255, 158, 187, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(235, 123, 155, 0.2);
             border-color: var(--pink-main);
-            color: var(--pink-deep);
+            color: var(--pink-title);
         }
 
         .contact-card i {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
         }
 
         .contact-card.facebook i { color: #1877f2; }
@@ -367,16 +358,18 @@
         .contact-card.group i { color: #ff6b6b; }
 
         .copyright {
-            margin-top: 25px;
             font-size: 0.75rem;
-            color: #c49ba9;
+            color: #b5a5ac;
         }
 
-        @media (max-width: 600px) {
-            .fur-title { font-size: 2.2rem; }
-            .subtitle { font-size: 0.8rem; }
-            td, th { padding: 12px 10px; font-size: 0.82rem; }
-            .badge { padding: 4px 10px; font-size: 0.75rem; }
+        @media (max-width: 650px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .title-box h1 { font-size: 1.8rem; }
+            .controls-card { flex-direction: column; align-items: stretch; }
+            .filter-tabs { justify-content: space-between; }
+            th, td { padding: 10px 6px; font-size: 0.8rem; }
+            .contact-links { flex-direction: column; align-items: center; gap: 8px; }
+            .contact-card { width: 100%; justify-content: center; }
         }
     </style>
 </head>
@@ -385,59 +378,82 @@
     <div class="container">
         <!-- Header -->
         <header>
-            <div class="fur-title-container">
-                <h1 class="fur-title">Check Q ร้านตั้ม</h1>
+            <div class="title-box">
+                <i class="fa-solid fa-paw paw-icon"></i>
+                <h1>Check Q ร้านตั้ม</h1>
+                <i class="fa-solid fa-paw paw-icon"></i>
             </div>
-            <br>
-            <div class="subtitle">
-                <i class="fa-solid fa-heart" style="color: #ff69b4; margin-right: 5px;"></i>
-                หากท่านใดที่สั่งงานกับเราไม่ขึ้นชื่อทักทางส่วนตัวได้เลยค่ะ
+            <div>
+                <div class="subtitle-pill">
+                    <i class="fa-solid fa-heart heart-icon"></i>
+                    หากท่านใดที่สั่งงานกับเราไม่ขึ้นชื่อ ทักทางส่วนตัวได้เลยค่ะ
+                    <i class="fa-solid fa-heart heart-icon"></i>
+                </div>
             </div>
         </header>
 
-        <!-- Search & Filter Bar -->
+        <!-- Search & Filters -->
         <div class="controls-card">
             <div class="search-box">
                 <i class="fa-solid fa-magnifying-glass"></i>
                 <input type="text" id="searchInput" placeholder="พิมพ์ชื่อลูกค้า เพื่อค้นหาคิว..." onkeyup="filterData()">
             </div>
-            <div class="filter-buttons">
-                <button class="filter-btn active" onclick="setFilter('all', this)">ทั้งหมด</button>
-                <button class="filter-btn" onclick="setFilter('รอคิว', this)">รอคิว</button>
-                <button class="filter-btn" onclick="setFilter('กำลัง', this)">กำลังทำ</button>
-                <button class="filter-btn" onclick="setFilter('เสร็จ', this)">เสร็จแล้ว</button>
+            <div class="filter-tabs">
+                <button class="tab-btn active" onclick="setFilter('all', this)">ทั้งหมด</button>
+                <button class="tab-btn" onclick="setFilter('รอคิว', this)">⏳ รอคิว</button>
+                <button class="tab-btn" onclick="setFilter('กำลัง', this)">🎨 กำลังทำ</button>
+                <button class="tab-btn" onclick="setFilter('เสร็จ', this)">✅ เสร็จแล้ว</button>
             </div>
         </div>
 
-        <!-- Queue Table -->
-        <div class="table-card">
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th style="text-align: center;">ลำดับ</th>
-                            <th>ชื่อลูกค้า / งาน</th>
-                            <th>รายละเอียด</th>
-                            <th style="text-align: center;">สถานะ</th>
-                            <th>วันที่รับงาน</th>
-                        </tr>
-                    </thead>
-                    <tbody id="queueTableBody">
-                        <tr>
-                            <td colspan="5" class="loading-state">
-                                <i class="fa-solid fa-spinner fa-spin fa-2x" style="color: var(--pink-main); margin-bottom: 10px;"></i>
-                                <p>กำลังดึงข้อมูลคิวงานแบบ Real-time...</p>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-label">คิวทั้งหมด</div>
+                <div class="stat-num" id="statAll">0</div>
             </div>
+            <div class="stat-card">
+                <div class="stat-label">รอคิว</div>
+                <div class="stat-num" id="statWaiting">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">กำลังดำเนินงาน</div>
+                <div class="stat-num" id="statDoing">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">เสร็จสิ้น</div>
+                <div class="stat-num" id="statDone">0</div>
+            </div>
+        </div>
+
+        <!-- Table Card -->
+        <div class="table-card">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 10%;">ลำดับ</th>
+                        <th style="width: 25%;">ชื่อลูกค้า</th>
+                        <th style="width: 35%;">รายละเอียดงาน</th>
+                        <th style="width: 15%;">สถานะ</th>
+                        <th style="width: 15%;">วันที่รับงาน</th>
+                    </tr>
+                </thead>
+                <tbody id="queueTableBody">
+                    <tr>
+                        <td colspan="5" class="loading-text">
+                            <i class="fa-solid fa-spinner fa-spin"></i> กำลังโหลดข้อมูล Real-time...
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 
-    <!-- Footer (ช่องทางติดต่อ) -->
+    <!-- Footer Section (ช่องทางติดต่อ) -->
     <footer>
-        <div class="footer-title">🌸 ช่องทางการติดต่อ 🌸</div>
+        <div class="footer-title">
+            🌸 ช่องทางการติดต่อ 🌸
+        </div>
         <div class="contact-links">
             <a href="https://facebook.com" target="_blank" class="contact-card facebook">
                 <i class="fa-brands fa-facebook"></i>
@@ -458,61 +474,78 @@
     </footer>
 
     <script>
-        // ลิงก์เชื่อมต่อ Google Sheets ของคุณแบบ Real-time
         const GOOGLE_SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/16WelSbS8RP3S2ee8rrEOcxEbe5uKkkcZGNxIUk_jR1c/export?format=csv";
 
-        let allData = [];
-        let currentStatusFilter = 'all';
+        let rawData = [];
+        let currentFilter = 'all';
 
         async function fetchRealtimeQueue() {
             try {
-                // ใส่ตัวแปร t ป้องกันเบราว์เซอร์จำแคช เพื่อให้ดึงข้อมูลสดใหม่ Real-time ทุกครั้ง
                 const response = await fetch(GOOGLE_SHEET_CSV_URL + '&t=' + new Date().getTime());
                 const csvText = await response.text();
-                allData = parseCSV(csvText);
+                rawData = parseCSV(csvText);
+                updateStats();
                 filterData();
-            } catch (error) {
-                console.error("Error fetching data:", error);
+            } catch (err) {
+                console.error("Fetch error:", err);
                 document.getElementById('queueTableBody').innerHTML = `
                     <tr>
-                        <td colspan="5" class="empty-state">
-                            <i class="fa-solid fa-circle-exclamation" style="font-size: 2rem; color: #ff6b6b; margin-bottom: 10px;"></i>
-                            <p>ไม่สามารถโหลดข้อมูลได้ กรุณาตรวจสอบการตั้งค่าใน Google Sheets</p>
-                        </td>
+                        <td colspan="5" class="empty-text">ไม่สามารถเชื่อมต่อ Google Sheets ได้</td>
                     </tr>
                 `;
             }
         }
 
         function parseCSV(text) {
-            const lines = text.split('\n').map(line => line.trim()).filter(line => line.length > 0);
-            const result = [];
+            const lines = text.split('\n').map(l => l.trim()).filter(l => l.length > 0);
+            const list = [];
             
-            // ข้ามแถวที่ 1 (Header)
             for (let i = 1; i < lines.length; i++) {
-                const row = lines[i].split(',').map(cell => cell.replace(/^"(.*)"$/, '$1').trim());
-                if (row.length >= 4 && row[1]) {
-                    result.push({
-                        id: row[0] || (i),
-                        name: row[1] || '-',
-                        detail: row[2] || '-',
-                        status: row[3] || 'รอคิว',
-                        date: row[4] || '-'
+                const col = lines[i].split(',').map(c => c.replace(/^"(.*)"$/, '$1').trim());
+                if (col.length >= 4 && col[1]) {
+                    list.push({
+                        id: col[0] || i,
+                        name: col[1],
+                        detail: col[2] || '-',
+                        status: col[3] || 'รอคิว',
+                        date: col[4] || '-'
                     });
                 }
             }
-            return result;
+            return list;
+        }
+
+        function updateStats() {
+            document.getElementById('statAll').innerText = rawData.length;
+            document.getElementById('statWaiting').innerText = rawData.filter(d => d.status.includes('รอ')).length;
+            document.getElementById('statDoing').innerText = rawData.filter(d => d.status.includes('กำลัง') || d.status.includes('ทำ')).length;
+            document.getElementById('statDone').innerText = rawData.filter(d => d.status.includes('เสร็จ')).length;
+        }
+
+        function filterData() {
+            const searchKey = document.getElementById('searchInput').value.toLowerCase();
+            
+            const filtered = rawData.filter(item => {
+                const matchSearch = item.name.toLowerCase().includes(searchKey) || 
+                                    item.detail.toLowerCase().includes(searchKey);
+                
+                let matchStatus = true;
+                if (currentFilter !== 'all') {
+                    matchStatus = item.status.includes(currentFilter);
+                }
+                return matchSearch && matchStatus;
+            });
+
+            renderTable(filtered);
         }
 
         function renderTable(data) {
             const tbody = document.getElementById('queueTableBody');
+            
             if (data.length === 0) {
                 tbody.innerHTML = `
                     <tr>
-                        <td colspan="5" class="empty-state">
-                            <i class="fa-regular fa-folder-open" style="font-size: 2rem; margin-bottom: 10px;"></i>
-                            <p>ไม่พบรายการคิวงาน</p>
-                        </td>
+                        <td colspan="5" class="empty-text">ไม่พบข้อมูลคิวงาน</td>
                     </tr>
                 `;
                 return;
@@ -520,54 +553,37 @@
 
             tbody.innerHTML = data.map(item => {
                 let badgeClass = 'badge-waiting';
-                let statusText = item.status;
-
-                if (statusText.includes('กำลัง') || statusText.includes('ทำ')) {
+                
+                if (item.status.includes('กำลัง') || item.status.includes('ทำ')) {
                     badgeClass = 'badge-doing';
-                } else if (statusText.includes('เสร็จ')) {
+                } else if (item.status.includes('เสร็จ')) {
                     badgeClass = 'badge-done';
                 }
 
                 return `
                     <tr>
-                        <td style="text-align: center;">#${item.id}</td>
+                        <td class="col-id">#${item.id}</td>
                         <td style="font-weight: 600;">${item.name}</td>
-                        <td>${item.detail}</td>
-                        <td style="text-align: center;">
-                            <span class="badge ${badgeClass}">${statusText}</span>
+                        <td style="color: #66555c;">${item.detail}</td>
+                        <td>
+                            <span class="badge ${badgeClass}">
+                                <span class="dot"></span>
+                                ${item.status}
+                            </span>
                         </td>
-                        <td style="color: #888;">${item.date}</td>
+                        <td style="color: #88777e;">${item.date}</td>
                     </tr>
                 `;
             }).join('');
         }
 
-        function filterData() {
-            const searchText = document.getElementById('searchInput').value.toLowerCase();
-            
-            const filtered = allData.filter(item => {
-                const matchesSearch = item.name.toLowerCase().includes(searchText) || 
-                                      item.detail.toLowerCase().includes(searchText);
-                
-                let matchesStatus = true;
-                if (currentStatusFilter !== 'all') {
-                    matchesStatus = item.status.includes(currentStatusFilter);
-                }
-
-                return matchesSearch && matchesStatus;
-            });
-
-            renderTable(filtered);
-        }
-
-        function setFilter(status, btnElement) {
-            currentStatusFilter = status;
-            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            btnElement.classList.add('active');
+        function setFilter(filterType, btn) {
+            currentFilter = filterType;
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
             filterData();
         }
 
-        // โหลดข้อมูลเมื่อเปิดหน้าเว็บ และอัปเดตแบบ Real-time ทุกๆ 10 วินาที
         window.onload = () => {
             fetchRealtimeQueue();
             setInterval(fetchRealtimeQueue, 10000);

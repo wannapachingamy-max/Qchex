@@ -23,7 +23,6 @@
             --card-shadow: 0 10px 30px rgba(230, 100, 150, 0.15);
         }
 
-        /* ใช้ฟอนต์ Prompt เป็นหลักทั้งหน้าเว็บ */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -33,7 +32,7 @@
 
         body {
             background-color: var(--pink-bg);
-            /* เพิ่มลายจุด Polka Dot น่ารักๆ บนพื้นหลัง */
+            /* ลายจุด Polka Dots */
             background-image: 
                 radial-gradient(rgba(255, 158, 187, 0.25) 2px, transparent 2.5px),
                 radial-gradient(circle at 10% 20%, rgba(255, 182, 193, 0.5) 0%, transparent 20%),
@@ -49,7 +48,19 @@
             overflow-x: hidden;
         }
 
-        /* --- Cute Background Decor (ก้อนเมฆและดาวดวงน้อย) --- */
+        /* --- ✨ Keyframes สำหรับอนิเมชันสั่นดุ๊กดิ๊ก/เด้งๆ อัตโนมัติ --- */
+        @keyframes cuteBounce {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-4px) rotate(-1.5deg); }
+            75% { transform: translateY(3px) rotate(1.5deg); }
+        }
+
+        @keyframes cutePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+
+        /* --- Background Decor --- */
         .bg-decor {
             position: fixed;
             top: 0;
@@ -128,6 +139,8 @@
             margin-bottom: 25px;
             position: relative;
             overflow: hidden;
+            /* เพิ่มอนิเมชันดุ๊กดิ๊กให้อยู่ตลอดเวลา */
+            animation: cutePulse 4s ease-in-out infinite;
         }
 
         header::before {
@@ -151,9 +164,10 @@
             position: relative;
             z-index: 1;
             display: inline-block;
+            /* สั่นดุ๊กดิ๊กอัตโนมัติ */
+            animation: cuteBounce 2.5s ease-in-out infinite;
         }
 
-        /* ใช้ฟอนต์ Mitr เฉพาะตรงชื่อหัวข้อร้าน */
         .fur-title {
             font-family: 'Mitr', sans-serif !important;
             font-size: 3.2rem;
@@ -179,14 +193,11 @@
             color: #d84374;
             box-shadow: 0 4px 15px rgba(255, 158, 187, 0.3);
             border: 1.5px dashed var(--pink-soft);
-            transition: transform 0.3s ease;
+            /* เด้งเบาๆ อัตโนมัติ */
+            animation: cuteBounce 3s ease-in-out infinite 0.5s;
         }
 
-        .subtitle:hover {
-            transform: scale(1.03);
-        }
-
-        /* --- Controls (Search & Filter) --- */
+        /* --- Controls --- */
         .controls-card {
             background: var(--white-glass);
             backdrop-filter: blur(12px);
@@ -232,6 +243,8 @@
             transform: translateY(-50%);
             color: var(--pink-main);
             font-size: 1.1rem;
+            /* ไอคอนแว่นขยายสั่นเบาๆ */
+            animation: cuteBounce 2s ease-in-out infinite;
         }
 
         .filter-buttons {
@@ -253,11 +266,13 @@
             transition: all 0.3s;
         }
 
-        .filter-btn:hover, .filter-btn.active {
+        .filter-btn.active {
             background: var(--pink-main);
             color: white;
             border-color: var(--pink-main);
             box-shadow: 0 4px 12px rgba(255, 158, 187, 0.45);
+            /* ปุ่มที่เลือกอยู่จะขยับดุ๊กดิ๊ก */
+            animation: cuteBounce 2s ease-in-out infinite;
         }
 
         /* --- Stats Row --- */
@@ -276,12 +291,14 @@
             text-align: center;
             box-shadow: var(--card-shadow);
             border: 1px solid rgba(255, 255, 255, 0.8);
-            transition: transform 0.3s ease;
+            /* การ์ดสถิติสั่นดุ๊กดิ๊กแบบเหลื่อมเวลากัน */
+            animation: cuteBounce 3s ease-in-out infinite;
         }
 
-        .stat-card:hover {
-            transform: translateY(-4px);
-        }
+        .stat-card:nth-child(1) { animation-delay: 0s; }
+        .stat-card:nth-child(2) { animation-delay: 0.2s; }
+        .stat-card:nth-child(3) { animation-delay: 0.4s; }
+        .stat-card:nth-child(4) { animation-delay: 0.6s; }
 
         .stat-label {
             font-size: 0.8rem;
@@ -340,11 +357,6 @@
             border-radius: 15px;
         }
 
-        tbody tr:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 18px rgba(255, 158, 187, 0.28);
-        }
-
         td {
             padding: 16px;
             font-size: 0.9rem;
@@ -365,7 +377,7 @@
             border-bottom-right-radius: 15px;
         }
 
-        /* --- ไฟสถานะสวยๆ (Glowing Status Badges) --- */
+        /* --- Status Badges (ไฟสถานะ) --- */
         .badge {
             padding: 6px 14px;
             border-radius: 50px;
@@ -377,6 +389,8 @@
             gap: 6px;
             text-align: center;
             box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+            /* ป้ายสถานะสั่นขยับตลอดเวลา */
+            animation: cuteBounce 2.2s ease-in-out infinite;
         }
 
         .status-dot {
@@ -450,6 +464,8 @@
             font-size: 1.2rem;
             font-weight: 600;
             margin-bottom: 20px;
+            /* ข้อความหัวข้อท้ายหน้าสั่นเบาๆ */
+            animation: cuteBounce 3s ease-in-out infinite;
         }
 
         .contact-links {
@@ -474,14 +490,13 @@
             border: 1px solid var(--pink-soft);
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03);
             transition: all 0.3s;
+            /* ปุ่ม ติดต่อ ขยับดุ๊กดิ๊กอัตโนมัติ */
+            animation: cuteBounce 2.8s ease-in-out infinite;
         }
 
-        .contact-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(255, 158, 187, 0.3);
-            border-color: var(--pink-main);
-            color: var(--pink-deep);
-        }
+        .contact-card:nth-child(1) { animation-delay: 0s; }
+        .contact-card:nth-child(2) { animation-delay: 0.3s; }
+        .contact-card:nth-child(3) { animation-delay: 0.6s; }
 
         .contact-card i {
             font-size: 1.2rem;

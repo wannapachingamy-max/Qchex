@@ -4,429 +4,573 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Check Q ร้านตั้ม - เช็คคิวงาน</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Prompt & Mitr -->
+
+    <!-- Google Fonts & FontAwesome Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Mitr:wght@300;400;500;600&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- FontAwesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Mali:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        pastel: {
-                            pink: '#FFD1DC',
-                            lightpink: '#FFF0F5',
-                            hotpink: '#FF9EAA',
-                            rose: '#FFB7B2',
-                            deep: '#E87A90',
-                            bg: '#FFF5F7',
-                            card: 'rgba(255, 255, 255, 0.85)',
-                            text: '#5A4A4E'
-                        }
-                    },
-                    fontFamily: {
-                        prompt: ['Prompt', 'sans-serif'],
-                        mitr: ['Mitr', 'sans-serif'],
-                    },
-                    animation: {
-                        'float': 'float 3s ease-in-out infinite',
-                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'bounce-soft': 'bounceSoft 2s infinite',
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0px)' },
-                            '50%': { transform: 'translateY(-8px)' },
-                        },
-                        bounceSoft: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-5px)' },
-                        }
-                    }
-                }
-            }
-        }
-    </script>
 
     <style>
-        body {
-            font-family: 'Prompt', sans-serif;
-            background-color: #FFF5F7;
-            background-image: 
-                radial-gradient(#FFD1DC 1.5px, transparent 1.5px), 
-                radial-gradient(#FFB7B2 1.5px, #FFF5F7 1.5px);
-            background-size: 60px 60px;
-            background-position: 0 0, 30px 30px;
-            color: #5A4A4E;
+        :root {
+            --pink-main: #ff9ebb;
+            --pink-soft: #ffc2d4;
+            --pink-light: #ffe5ec;
+            --pink-bg: #fff0f5;
+            --pink-deep: #e05297;
+            --white-glass: rgba(255, 255, 255, 0.85);
+            --text-color: #5a3e4d;
+            --status-waiting: #ffa07a;
+            --status-doing: #4dabf7;
+            --status-done: #51cf66;
+            --card-shadow: 0 10px 30px rgba(230, 100, 150, 0.15);
         }
 
-        /* Pastel Pink Fur Texture for Header Text */
-        .fur-text {
-            font-family: 'Mitr', sans-serif;
-            color: #FF7B9C;
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Prompt', 'Mali', sans-serif;
+        }
+
+        body {
+            background-color: var(--pink-bg);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(255, 182, 193, 0.4) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(255, 218, 224, 0.5) 0%, transparent 20%),
+                radial-gradient(circle at 50% 50%, rgba(255, 240, 245, 1) 0%, rgba(255, 222, 233, 0.6) 100%);
+            background-attachment: fixed;
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            width: 100%;
+            flex: 1;
+        }
+
+        /* --- Header Section with Cat Fur Texture Effect --- */
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: var(--white-glass);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            box-shadow: var(--card-shadow);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            margin-bottom: 25px;
             position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,192,203,0.3) 0%, transparent 60%);
+            animation: rotateBg 20s linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes rotateBg {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Cat Fur Textured Text */
+        .fur-title-container {
+            position: relative;
+            z-index: 1;
             display: inline-block;
-            background: linear-gradient(135deg, #FFB3C6 0%, #FF8EAE 30%, #FF6584 70%, #FFA8BA 100%);
+        }
+
+        .fur-title {
+            font-family: 'Mali', cursive;
+            font-size: 3.2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 50%, #e05297 100%);
+            background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 4px 6px rgba(255, 142, 174, 0.3));
+            position: relative;
+            display: inline-block;
+            filter: drop-shadow(2px 4px 6px rgba(224, 82, 151, 0.2));
         }
 
-        /* Simulating Fur Effect Overlay */
-        .fur-container {
-            position: relative;
-        }
-        
-        .fur-container::before {
-            content: "Check Q ร้านตั้ม";
+        .fur-title::after {
+            content: 'Check Q ร้านตั้ม';
             position: absolute;
             left: 0;
             top: 0;
-            width: 100%;
-            height: 100%;
-            font-family: 'Mitr', sans-serif;
             z-index: -1;
-            /* SVG Pink Fur Texture */
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath d='M10 20 Q15 5 20 20 T30 20 M40 50 Q45 35 50 50 T60 50 M70 80 Q75 65 80 80 T90 80 M5 80 Q10 70 15 80' stroke='%20%23FFA3B8' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3Cpath d='M25 40 Q30 25 35 40 T45 40 M65 20 Q70 5 75 20 T85 20 M15 60 Q20 50 25 60' stroke='%23FFCCD5' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+            background: repeating-linear-gradient(
+                45deg,
+                #ffb6c1,
+                #ffb6c1 2px,
+                #ff69b4 2px,
+                #ff69b4 4px,
+                #ff1493 4px,
+                #ff1493 5px
+            );
+            background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            opacity: 0.8;
-            filter: blur(0.5px);
+            opacity: 0.3;
+            filter: blur(1px);
         }
 
-        /* Fur badge card background */
-        .fur-card-bg {
-            background-color: #FFE4E8;
-            background-image: radial-gradient(#FFB3C6 0.75px, transparent 0.75px);
-            background-size: 12px 12px;
-            box-shadow: inset 0 0 15px rgba(255, 182, 193, 0.5), 0 10px 25px -5px rgba(255, 158, 170, 0.3);
+        .subtitle {
+            position: relative;
+            z-index: 1;
+            background: #fff;
+            display: inline-block;
+            padding: 8px 22px;
+            border-radius: 50px;
+            margin-top: 15px;
+            font-size: 0.95rem;
+            color: #d84374;
+            box-shadow: 0 4px 15px rgba(255, 158, 187, 0.3);
+            border: 1px dashed var(--pink-soft);
         }
 
-        /* Glassmorphism custom design */
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 2px solid rgba(255, 209, 220, 0.6);
+        /* --- Controls (Search & Filter) --- */
+        .controls-card {
+            background: var(--white-glass);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            margin-bottom: 25px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
+        .search-box {
+            position: relative;
+            flex: 1;
+            min-width: 250px;
         }
-        ::-webkit-scrollbar-track {
-            background: #FFF0F5;
-            border-radius: 10px;
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 20px 12px 45px;
+            border-radius: 50px;
+            border: 2px solid var(--pink-soft);
+            outline: none;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--text-color);
         }
-        ::-webkit-scrollbar-thumb {
-            background: #FFB7B2;
-            border-radius: 10px;
+
+        .search-box input:focus {
+            border-color: var(--pink-deep);
+            box-shadow: 0 0 10px rgba(224, 82, 151, 0.2);
         }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #FF9EAA;
+
+        .search-box i {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--pink-main);
+            font-size: 1.1rem;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            border: none;
+            background: #fff;
+            padding: 8px 16px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-color);
+            border: 1px solid var(--pink-soft);
+            transition: all 0.3s;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--pink-main);
+            color: white;
+            border-color: var(--pink-main);
+            box-shadow: 0 4px 10px rgba(255, 158, 187, 0.4);
+        }
+
+        /* --- Table Section --- */
+        .table-card {
+            background: var(--white-glass);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            overflow: hidden;
+            padding: 10px;
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 10px;
+        }
+
+        th {
+            padding: 15px;
+            color: var(--pink-deep);
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-align: left;
+            border-bottom: 2px solid var(--pink-light);
+        }
+
+        tbody tr {
+            background: #ffffff;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+            border-radius: 15px;
+        }
+
+        tbody tr:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 158, 187, 0.25);
+        }
+
+        td {
+            padding: 16px;
+            font-size: 0.9rem;
+            vertical-align: middle;
+        }
+
+        td:first-child {
+            border-top-left-radius: 15px;
+            border-bottom-left-radius: 15px;
+            font-weight: 700;
+            color: var(--pink-deep);
+            text-align: center;
+            width: 70px;
+        }
+
+        td:last-child {
+            border-top-right-radius: 15px;
+            border-bottom-right-radius: 15px;
+        }
+
+        .badge {
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .badge-waiting {
+            background-color: #fff4e6;
+            color: #d9480f;
+            border: 1px solid #ffd8a8;
+        }
+
+        .badge-doing {
+            background-color: #e7f5ff;
+            color: #1971c2;
+            border: 1px solid #a5d8ff;
+        }
+
+        .badge-done {
+            background-color: #ebfbee;
+            color: #2b8a3e;
+            border: 1px solid #b2f2bb;
+        }
+
+        .loading-state, .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: #b08294;
+        }
+
+        /* --- Footer Section --- */
+        footer {
+            margin-top: 40px;
+            background: var(--white-glass);
+            backdrop-filter: blur(10px);
+            border-top-left-radius: 30px;
+            border-top-right-radius: 30px;
+            padding: 30px 20px;
+            box-shadow: 0 -10px 30px rgba(230, 100, 150, 0.08);
+            border-top: 1px solid rgba(255, 255, 255, 0.8);
+            text-align: center;
+        }
+
+        .footer-title {
+            font-family: 'Mali', cursive;
+            color: var(--pink-deep);
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-card {
+            background: #fff;
+            padding: 10px 20px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 0.88rem;
+            border: 1px solid var(--pink-soft);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03);
+            transition: all 0.3s;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 158, 187, 0.3);
+            border-color: var(--pink-main);
+            color: var(--pink-deep);
+        }
+
+        .contact-card i {
+            font-size: 1.2rem;
+        }
+
+        .contact-card.facebook i { color: #1877f2; }
+        .contact-card.line i { color: #06c755; }
+        .contact-card.group i { color: #ff6b6b; }
+
+        .copyright {
+            margin-top: 25px;
+            font-size: 0.75rem;
+            color: #c49ba9;
+        }
+
+        @media (max-width: 600px) {
+            .fur-title { font-size: 2.2rem; }
+            .subtitle { font-size: 0.8rem; }
+            td, th { padding: 12px 10px; font-size: 0.82rem; }
+            .badge { padding: 4px 10px; font-size: 0.75rem; }
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between selection:bg-pastel-pink selection:text-pastel-deep">
+<body>
 
-    <!-- HEADER SECTION -->
-    <header class="relative pt-10 pb-8 px-4 text-center overflow-hidden">
-        <!-- Floating Cute Decorative Elements -->
-        <div class="absolute top-4 left-10 text-3xl text-pastel-hotpink opacity-60 animate-float hidden sm:block">
-            <i class="fa-solid font-paw fa-paw"></i>
-        </div>
-        <div class="absolute top-12 right-12 text-2xl text-pastel-rose opacity-70 animate-float style='animation-delay: 1s;' hidden sm:block">
-            <i class="fa-solid fa-cat"></i>
-        </div>
-        <div class="absolute bottom-2 left-1/4 text-xl text-pastel-hotpink opacity-40 animate-pulse-slow">
-            <i class="fa-solid fa-heart"></i>
-        </div>
-        <div class="absolute top-6 right-1/4 text-xl text-pastel-rose opacity-50 animate-pulse-slow">
-            <i class="fa-solid fa-sparkles"></i>
-        </div>
-
-        <div class="max-w-4xl mx-auto">
-            <!-- Header Badge with Soft Pink Fur Outer Pattern -->
-            <div class="fur-card-bg inline-block px-8 py-6 rounded-3xl mb-4 border-4 border-white transform hover:scale-105 transition-transform duration-300">
-                <div class="flex items-center justify-center gap-3 mb-1">
-                    <i class="fa-solid fa-cat text-pastel-deep text-2xl animate-bounce-soft"></i>
-                    <h1 class="fur-text text-3xl sm:text-5xl font-bold tracking-wide">
-                        Check Q ร้านตั้ม
-                    </h1>
-                    <i class="fa-solid fa-paw text-pastel-deep text-2xl animate-bounce-soft"></i>
-                </div>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="fur-title-container">
+                <h1 class="fur-title">Check Q ร้านตั้ม</h1>
             </div>
-
-            <!-- คำโปรย (Slogan) -->
-            <div class="mt-2 inline-flex items-center gap-2 bg-white/90 px-6 py-2.5 rounded-full shadow-sm border border-pastel-pink text-sm sm:text-base text-gray-700 font-medium">
-                <span class="inline-block w-2.5 h-2.5 rounded-full bg-pastel-deep animate-ping"></span>
-                <span>หากท่านใดที่สั่งงานกับเราไม่ขึ้นชื่อ ทักทางส่วนตัวได้เลยค่ะ 💕</span>
+            <br>
+            <div class="subtitle">
+                <i class="fa-solid fa-heart" style="color: #ff69b4; margin-right: 5px;"></i>
+                หากท่านใดที่สั่งงานกับเราไม่ขึ้นชื่อทักทางส่วนตัวได้เลยค่ะ
             </div>
-        </div>
-    </header>
+        </header>
 
-    <!-- MAIN CONTENT BODY -->
-    <main class="max-w-5xl mx-auto px-4 py-4 flex-grow w-full">
-        
         <!-- Search & Filter Bar -->
-        <div class="glass-panel rounded-3xl p-4 sm:p-6 mb-6 shadow-xl">
-            <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
-                
-                <!-- Search Input -->
-                <div class="relative w-full md:w-72">
-                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-pastel-deep"></i>
-                    <input 
-                        type="text" 
-                        id="searchInput"
-                        placeholder="ค้นหาชื่อลูกค้า / งาน..." 
-                        class="w-full pl-11 pr-4 py-2.5 bg-white/90 border border-pastel-pink rounded-full focus:outline-none focus:ring-2 focus:ring-pastel-hotpink/50 text-sm text-gray-700 placeholder-gray-400 transition-all shadow-inner"
-                        onkeyup="filterQueue()"
-                    >
-                </div>
-
-                <!-- Status Filter Buttons -->
-                <div class="flex flex-wrap gap-2 justify-center w-full md:w-auto">
-                    <button onclick="setFilter('all')" id="btn-all" class="filter-btn active-filter px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 bg-pastel-deep text-white shadow-md">
-                        ทั้งหมด
-                    </button>
-                    <button onclick="setFilter('รอคิว')" id="btn-pending" class="filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 bg-white text-gray-600 hover:bg-pink-50 border border-pink-200">
-                        ⏳ รอคิว
-                    </button>
-                    <button onclick="setFilter('กำลังดำเนินงาน')" id="btn-working" class="filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 bg-white text-gray-600 hover:bg-pink-50 border border-pink-200">
-                        🎨 กำลังทำ
-                    </button>
-                    <button onclick="setFilter('เสร็จสิ้น')" id="btn-done" class="filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 bg-white text-gray-600 hover:bg-pink-50 border border-pink-200">
-                        ✅ เสร็จแล้ว
-                    </button>
-                </div>
+        <div class="controls-card">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="searchInput" placeholder="พิมพ์ชื่อลูกค้า เพื่อค้นหาคิว..." onkeyup="filterData()">
+            </div>
+            <div class="filter-buttons">
+                <button class="filter-btn active" onclick="setFilter('all', this)">ทั้งหมด</button>
+                <button class="filter-btn" onclick="setFilter('รอคิว', this)">รอคิว</button>
+                <button class="filter-btn" onclick="setFilter('กำลังดำเนินการ', this)">กำลังทำ</button>
+                <button class="filter-btn" onclick="setFilter('เสร็จแล้ว', this)">เสร็จแล้ว</button>
             </div>
         </div>
 
-        <!-- Queue Status Summary Chips -->
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
-            <div class="bg-white/80 p-3 rounded-2xl border border-pink-100 shadow-sm text-center">
-                <p class="text-xs text-gray-500 mb-0.5">คิวทั้งหมด</p>
-                <p id="count-all" class="text-xl font-bold text-pastel-deep">0</p>
-            </div>
-            <div class="bg-amber-50/80 p-3 rounded-2xl border border-amber-100 shadow-sm text-center">
-                <p class="text-xs text-amber-600 mb-0.5">รอคิว</p>
-                <p id="count-pending" class="text-xl font-bold text-amber-500">0</p>
-            </div>
-            <div class="bg-sky-50/80 p-3 rounded-2xl border border-sky-100 shadow-sm text-center">
-                <p class="text-xs text-sky-600 mb-0.5">กำลังดำเนินงาน</p>
-                <p id="count-working" class="text-xl font-bold text-sky-500">0</p>
-            </div>
-            <div class="bg-emerald-50/80 p-3 rounded-2xl border border-emerald-100 shadow-sm text-center">
-                <p class="text-xs text-emerald-600 mb-0.5">เสร็จสิ้น</p>
-                <p id="count-done" class="text-xl font-bold text-emerald-500">0</p>
-            </div>
-        </div>
-
-        <!-- Table Container -->
-        <div class="glass-panel rounded-3xl shadow-xl overflow-hidden mb-10">
-            <div class="overflow-x-auto">
-                <table class="w-full text-left border-collapse">
+        <!-- Queue Table -->
+        <div class="table-card">
+            <div class="table-container">
+                <table>
                     <thead>
-                        <tr class="bg-gradient-to-r from-pink-100/90 via-pink-50/90 to-pink-100/90 border-b border-pink-200 text-pastel-deep text-xs sm:text-sm font-semibold">
-                            <th class="py-4 px-4 sm:px-6 text-center w-16">ลำดับ</th>
-                            <th class="py-4 px-4 sm:px-6">ชื่อลูกค้า</th>
-                            <th class="py-4 px-4 sm:px-6">รายละเอียดงาน</th>
-                            <th class="py-4 px-4 sm:px-6 text-center">สถานะ</th>
-                            <th class="py-4 px-4 sm:px-6 text-center">วันที่รับงาน</th>
+                        <tr>
+                            <th style="text-align: center;">ลำดับ</th>
+                            <th>ชื่อลูกค้า / งาน</th>
+                            <th>รายละเอียด</th>
+                            <th style="text-align: center;">สถานะ</th>
+                            <th>วันที่รับงาน</th>
                         </tr>
                     </thead>
-                    <tbody id="queueTableBody" class="divide-y divide-pink-100 text-xs sm:text-sm text-gray-700">
-                        <!-- Data will be populated by JavaScript -->
+                    <tbody id="queueTableBody">
+                        <tr>
+                            <td colspan="5" class="loading-state">
+                                <i class="fa-solid fa-spinner fa-spin fa-2x" style="color: var(--pink-main); margin-bottom: 10px;"></i>
+                                <p>กำลังดึงข้อมูลคิวงานจาก Google Sheets...</p>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
-
-            <!-- Empty State Message -->
-            <div id="emptyState" class="hidden py-12 text-center">
-                <i class="fa-solid fa-cat text-4xl text-pastel-rose mb-3 animate-bounce"></i>
-                <p class="text-gray-500 font-medium">ไม่พบข้อมูลคิวงานที่ตรงกับคำค้นหาค่ะ</p>
-            </div>
         </div>
+    </div>
 
-    </main>
-
-    <!-- FOOTER SECTION -->
-    <footer class="bg-white/80 border-t-2 border-pink-200/60 pt-8 pb-6 px-4 mt-8 backdrop-blur-md">
-        <div class="max-w-5xl mx-auto">
-            <div class="text-center mb-6">
-                <h3 class="text-lg font-bold text-pastel-deep inline-flex items-center gap-2">
-                    <i class="fa-solid fa-heart"></i> ช่องทางติดต่อ ร้านตั้ม <i class="fa-solid fa-heart"></i>
-                </h3>
-                <p class="text-xs text-gray-500 mt-1">สามารถสอบถามรายละเอียด สั่งงาน หรือเช็คคิวเพิ่มเติมได้ทางช่องทางล่างนี้ค่ะ</p>
-            </div>
-
-            <!-- Contact Buttons Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-                
-                <!-- Facebook Card -->
-                <a href="https://facebook.com" target="_blank" class="group bg-gradient-to-r from-blue-50 to-indigo-50 hover:from-blue-100 hover:to-indigo-100 p-4 rounded-2xl border border-blue-200/60 shadow-sm hover:shadow-md transition-all duration-300 flex items-center gap-4">
-                    <div class="w-12 h-12 rounded-xl bg-blue-500 text-white flex items-center justify-center text-xl shadow-md group-hover:scale-110 transition-transform">
-                        <i class="fa-brands fa-facebook-f"></i>
-                    </div>
-                    <div class="overflow-hidden">
-                        <p class="text-xs text-blue-600 font-medium">Facebook</p>
-                        <p class="text-sm font-bold text-gray-800 truncate">ร้านตั้ม รับทำงานกราฟิก & คิวงาน</p>
-                    </div>
-                </a>
-
-                <!-- Line Official Card -->
-                <a href="https://line.me" target="_blank" class="group bg-gradient-to-r from-emerald-50 to-teal-50 hover:from-emerald-100 hover:to-teal-100 p-4 rounded-2xl border border-emerald-200/60 shadow-sm hover:shadow-md transition-all duration-300 flex items-center gap-4">
-                    <div class="w-12 h-12 rounded-xl bg-emerald-500 text-white flex items-center justify-center text-2xl shadow-md group-hover:scale-110 transition-transform">
-                        <i class="fa-brands fa-line"></i>
-                    </div>
-                    <div class="overflow-hidden">
-                        <p class="text-xs text-emerald-600 font-medium">Line Official</p>
-                        <p class="text-sm font-bold text-gray-800 truncate">@TumStore (มี @ ด้วยนะคะ)</p>
-                    </div>
-                </a>
-
-                <!-- Admin Group Card -->
-                <a href="#" target="_blank" class="group bg-gradient-to-r from-pink-50 to-rose-50 hover:from-pink-100 hover:to-rose-100 p-4 rounded-2xl border border-pink-200/60 shadow-sm hover:shadow-md transition-all duration-300 flex items-center gap-4">
-                    <div class="w-12 h-12 rounded-xl bg-pastel-deep text-white flex items-center justify-center text-xl shadow-md group-hover:scale-110 transition-transform">
-                        <i class="fa-solid fa-users"></i>
-                    </div>
-                    <div class="overflow-hidden">
-                        <p class="text-xs text-pastel-deep font-medium">กลุ่มที่แอดมินดูแล</p>
-                        <p class="text-sm font-bold text-gray-800 truncate">กลุ่มส่งงาน & อัปเดตคิว ร้านตั้ม</p>
-                    </div>
-                </a>
-
-            </div>
-
-            <!-- Copyright -->
-            <div class="text-center text-xs text-gray-400 border-t border-pink-100 pt-4 flex items-center justify-center gap-1">
-                <span>© 2026 Check Q ร้านตั้ม. Designed with</span>
-                <i class="fa-solid fa-heart text-pink-400"></i>
-                <span>Pastel Cute Style</span>
-            </div>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-title">🌸 ช่องทางการติดต่อ 🌸</div>
+        <div class="contact-links">
+            <a href="https://facebook.com" target="_blank" class="contact-card facebook">
+                <i class="fa-brands fa-facebook"></i>
+                <span>Facebook</span>
+            </a>
+            <a href="https://line.me" target="_blank" class="contact-card line">
+                <i class="fa-brands fa-line"></i>
+                <span>Line Official</span>
+            </a>
+            <a href="#" target="_blank" class="contact-card group">
+                <i class="fa-solid fa-user-group"></i>
+                <span>กลุ่มที่แอดมินดูแล</span>
+            </a>
+        </div>
+        <div class="copyright">
+            © Check Q ร้านตั้ม - บริการเช็คคิวงานออนไลน์
         </div>
     </footer>
 
-    <!-- JAVASCRIPT LOGIC -->
     <script>
-        // Mock Queue Data (ข้อมูลตัวอย่างคิวงาน)
-        const queueData = [
-            { id: 1, customer: "คุณเมย์ (FB: Maymimi)", details: "ออกแบบโลโก้ร้านกาแฟมินิมอล", status: "กำลังดำเนินงาน", date: "24 ก.ย. 2026" },
-            { id: 2, customer: "คุณนัท (Line)", details: "ทำแบนเนอร์สินค้าโปรโมชั่น 3 ภาพ", status: "รอคิว", date: "25 ก.ย. 2026" },
-            { id: 3, customer: "คุณเจมส์", details: "ออกแบบกรอบโปรไฟล์ FB", status: "เสร็จสิ้น", date: "22 ก.ย. 2026" },
-            { id: 4, customer: "คุณฝน (กลุ่มแอดมิน)", details: "วาดมาสคอตแมวสีชมพู 2 อิริยาบถ", status: "กำลังดำเนินงาน", date: "23 ก.ย. 2026" },
-            { id: 5, customer: "คุณเอ้ (FB: Aey_Studio)", details: "จัดธีมหน้าร้าน Shopee", status: "รอคิว", date: "26 ก.ย. 2026" },
-            { id: 6, customer: "คุณแป้งฝุ่น", details: "รีทัชรูปภาพสินค้า 10 รูป", status: "เสร็จสิ้น", date: "21 ก.ย. 2026" },
-            { id: 7, customer: "คุณต่าย", details: "โลโก้ตัวอักษรน่ารักพาสเทล", status: "รอคิว", date: "26 ก.ย. 2026" },
-        ];
+        // ลิงก์ดึงข้อมูล CSV จาก Google Sheets ของคุณ
+        const GOOGLE_SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/16WelSbS8RP3S2ee8rrEOcxEbe5uKkkcZGNxIUk_jR1c/export?format=csv";
 
-        let currentFilter = 'all';
+        let allData = [];
+        let currentStatusFilter = 'all';
 
-        // Render Table Data
-        function renderQueue() {
-            const tableBody = document.getElementById('queueTableBody');
-            const emptyState = document.getElementById('emptyState');
-            const searchInput = document.getElementById('searchInput').value.toLowerCase().trim();
+        async function fetchQueueData() {
+            try {
+                const response = await fetch(GOOGLE_SHEET_CSV_URL);
+                const csvText = await response.text();
+                allData = parseCSV(csvText);
+                renderTable(allData);
+            } catch (error) {
+                console.error("Error fetching data:", error);
+                document.getElementById('queueTableBody').innerHTML = `
+                    <tr>
+                        <td colspan="5" class="empty-state">
+                            <i class="fa-solid fa-circle-exclamation" style="font-size: 2rem; color: #ff6b6b; margin-bottom: 10px;"></i>
+                            <p>ไม่สามารถโหลดข้อมูลได้ กรุณาตรวจสอบการตั้งค่าการแชร์ใน Google Sheets</p>
+                        </td>
+                    </tr>
+                `;
+            }
+        }
+
+        function parseCSV(text) {
+            const lines = text.split('\n').map(line => line.trim()).filter(line => line.length > 0);
+            const result = [];
             
-            tableBody.innerHTML = '';
-            
-            let filtered = queueData.filter(item => {
-                const matchFilter = (currentFilter === 'all') || (item.status === currentFilter);
-                const matchSearch = item.customer.toLowerCase().includes(searchInput) || 
-                                    item.details.toLowerCase().includes(searchInput);
-                return matchFilter && matchSearch;
-            });
+            // ข้ามแถวที่ 1 (Header)
+            for (let i = 1; i < lines.length; i++) {
+                const row = lines[i].split(',').map(cell => cell.replace(/^"(.*)"$/, '$1').trim());
+                if (row.length >= 4) {
+                    result.push({
+                        id: row[0] || (i),
+                        name: row[1] || '-',
+                        detail: row[2] || '-',
+                        status: row[3] || 'รอคิว',
+                        date: row[4] || '-'
+                    });
+                }
+            }
+            return result;
+        }
 
-            // Update Status Counts
-            updateSummaryCounts();
-
-            if (filtered.length === 0) {
-                emptyState.classList.remove('hidden');
+        function renderTable(data) {
+            const tbody = document.getElementById('queueTableBody');
+            if (data.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="5" class="empty-state">
+                            <i class="fa-regular fa-folder-open" style="font-size: 2rem; margin-bottom: 10px;"></i>
+                            <p>ไม่พบรายการคิวงาน</p>
+                        </td>
+                    </tr>
+                `;
                 return;
-            } else {
-                emptyState.classList.add('hidden');
             }
 
-            filtered.forEach((item) => {
-                const tr = document.createElement('tr');
-                tr.className = "hover:bg-pink-50/50 transition-colors duration-150";
+            tbody.innerHTML = data.map(item => {
+                let badgeClass = 'badge-waiting';
+                let statusText = item.status;
 
-                // Status Badge styling
-                let statusBadge = '';
-                if (item.status === 'รอคิว') {
-                    statusBadge = `<span class="px-3 py-1 bg-amber-100 text-amber-700 rounded-full text-xs font-semibold inline-flex items-center gap-1 shadow-sm"><span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>รอคิว</span>`;
-                } else if (item.status === 'กำลังดำเนินงาน') {
-                    statusBadge = `<span class="px-3 py-1 bg-sky-100 text-sky-700 rounded-full text-xs font-semibold inline-flex items-center gap-1 shadow-sm"><span class="w-1.5 h-1.5 rounded-full bg-sky-500 animate-ping"></span>กำลังทำ</span>`;
-                } else if (item.status === 'เสร็จสิ้น') {
-                    statusBadge = `<span class="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-xs font-semibold inline-flex items-center gap-1 shadow-sm"><i class="fa-solid fa-check text-xs"></i>เสร็จสิ้น</span>`;
+                if (statusText.includes('กำลัง') || statusText.includes('ทำ')) {
+                    badgeClass = 'badge-doing';
+                } else if (statusText.includes('เสร็จ')) {
+                    badgeClass = 'badge-done';
                 }
 
-                tr.innerHTML = `
-                    <td class="py-4 px-4 sm:px-6 text-center font-bold text-pastel-deep">#${item.id}</td>
-                    <td class="py-4 px-4 sm:px-6 font-medium text-gray-800">${escapeHtml(item.customer)}</td>
-                    <td class="py-4 px-4 sm:px-6 text-gray-600">${escapeHtml(item.details)}</td>
-                    <td class="py-4 px-4 sm:px-6 text-center">${statusBadge}</td>
-                    <td class="py-4 px-4 sm:px-6 text-center text-xs text-gray-500">${item.date}</td>
+                return `
+                    <tr>
+                        <td style="text-align: center;">${item.id}</td>
+                        <td style="font-weight: 600;">${item.name}</td>
+                        <td>${item.detail}</td>
+                        <td style="text-align: center;">
+                            <span class="badge ${badgeClass}">${statusText}</span>
+                        </td>
+                        <td style="color: #888;">${item.date}</td>
+                    </tr>
                 `;
-                tableBody.appendChild(tr);
-            });
+            }).join('');
         }
 
-        // Helper to update counter widgets
-        function updateSummaryCounts() {
-            document.getElementById('count-all').innerText = queueData.length;
-            document.getElementById('count-pending').innerText = queueData.filter(i => i.status === 'รอคิว').length;
-            document.getElementById('count-working').innerText = queueData.filter(i => i.status === 'กำลังดำเนินงาน').length;
-            document.getElementById('count-done').innerText = queueData.filter(i => i.status === 'เสร็จสิ้น').length;
-        }
-
-        // Set Filter Category
-        function setFilter(filter) {
-            currentFilter = filter;
+        function filterData() {
+            const searchText = document.getElementById('searchInput').value.toLowerCase();
             
-            // Update button styles
-            const buttons = {
-                'all': document.getElementById('btn-all'),
-                'รอคิว': document.getElementById('btn-pending'),
-                'กำลังดำเนินงาน': document.getElementById('btn-working'),
-                'เสร็จสิ้น': document.getElementById('btn-done')
-            };
-
-            Object.keys(buttons).forEach(key => {
-                if(buttons[key]) {
-                    if (key === filter) {
-                        buttons[key].className = "filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 bg-pastel-deep text-white shadow-md";
-                    } else {
-                        buttons[key].className = "filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 bg-white text-gray-600 hover:bg-pink-50 border border-pink-200";
-                    }
+            const filtered = allData.filter(item => {
+                const matchesSearch = item.name.toLowerCase().includes(searchText) || 
+                                      item.detail.toLowerCase().includes(searchText);
+                
+                let matchesStatus = true;
+                if (currentStatusFilter !== 'all') {
+                    matchesStatus = item.status.includes(currentStatusFilter);
                 }
+
+                return matchesSearch && matchesStatus;
             });
 
-            renderQueue();
+            renderTable(filtered);
         }
 
-        // Filter search input trigger
-        function filterQueue() {
-            renderQueue();
+        function setFilter(status, btnElement) {
+            currentStatusFilter = status;
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            btnElement.classList.add('active');
+            filterData();
         }
 
-        // Utility to prevent XSS
-        function escapeHtml(text) {
-            const div = document.createElement('div');
-            div.innerText = text;
-            return div.innerHTML;
-        }
-
-        // Initialize table on load
-        window.onload = function() {
-            renderQueue();
-        };
+        // โหลดข้อมูลเมื่อเปิดหน้าเว็บ
+        window.onload = fetchQueueData;
     </script>
 </body>
 </html>

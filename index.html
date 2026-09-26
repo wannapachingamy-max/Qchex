@@ -33,10 +33,13 @@
 
         body {
             background-color: var(--pink-bg);
+            /* เพิ่มลายจุด Polka Dot น่ารักๆ บนพื้นหลัง */
             background-image: 
+                radial-gradient(rgba(255, 158, 187, 0.25) 2px, transparent 2.5px),
                 radial-gradient(circle at 10% 20%, rgba(255, 182, 193, 0.5) 0%, transparent 20%),
                 radial-gradient(circle at 90% 80%, rgba(255, 218, 224, 0.6) 0%, transparent 20%),
                 radial-gradient(circle at 50% 50%, rgba(255, 240, 245, 1) 0%, rgba(255, 222, 233, 0.6) 100%);
+            background-size: 24px 24px, 100% 100%, 100% 100%, 100% 100%;
             background-attachment: fixed;
             color: var(--text-color);
             min-height: 100vh;
@@ -60,7 +63,7 @@
 
         .cloud {
             position: absolute;
-            background: rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.65);
             border-radius: 50px;
             opacity: 0.7;
             animation: floatCloud 25s linear infinite;
@@ -69,7 +72,7 @@
         .cloud::before, .cloud::after {
             content: '';
             position: absolute;
-            background: rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.65);
             border-radius: 50%;
         }
 
@@ -362,7 +365,7 @@
             border-bottom-right-radius: 15px;
         }
 
-        /* --- ✨ เพิ่มไฟสถานะสวยๆ (Glowing Status Badges) --- */
+        /* --- ไฟสถานะสวยๆ (Glowing Status Badges) --- */
         .badge {
             padding: 6px 14px;
             border-radius: 50px;
@@ -376,7 +379,6 @@
             box-shadow: 0 2px 6px rgba(0,0,0,0.04);
         }
 
-        /* ไฟสถานะเปร่งประกาย (LED Glow Dot) */
         .status-dot {
             width: 8px;
             height: 8px;

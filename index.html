@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Check Q ร้านตั้ม</title>
-    <!-- Google Fonts & FontAwesome Icons -->
+    <!-- Google Fonts: Mali 100% ทั้งหมด -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -16,18 +16,18 @@
             --pink-card-bg: #fde2eb;
             --pink-card-border: #f9c2d1;
             --pink-title: #eb688e;
-            --pink-text: #e76088;
             --pink-main: #eb7b9b;
             --pink-btn: #e57293;
             --card-white: rgba(255, 255, 255, 0.95);
             --shadow-soft: 0 8px 25px rgba(235, 123, 155, 0.1);
         }
 
+        /* บังคับใช้ฟอนต์ Mali กับทุกส่วนของเว็บ */
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Prompt', 'Mali', sans-serif;
+            font-family: 'Mali', cursive, sans-serif !important;
         }
 
         body {
@@ -71,7 +71,6 @@
         }
 
         .title-box h1 {
-            font-family: 'Mali', cursive;
             color: var(--pink-title);
             font-size: 2.3rem;
             font-weight: 700;
@@ -91,6 +90,7 @@
             padding: 8px 24px;
             border-radius: 50px;
             font-size: 0.88rem;
+            font-weight: 600;
             color: #d15277;
             box-shadow: 0 2px 10px rgba(235, 123, 155, 0.08);
             border: 1px solid #f9d8e2;
@@ -128,6 +128,7 @@
             border: 1.5px solid #fce3eb;
             outline: none;
             font-size: 0.88rem;
+            font-weight: 500;
             background: #fff;
             color: #66555c;
         }
@@ -156,7 +157,7 @@
             padding: 7px 16px;
             border-radius: 50px;
             font-size: 0.82rem;
-            font-weight: 500;
+            font-weight: 600;
             color: #66555c;
             cursor: pointer;
             display: flex;
@@ -191,6 +192,7 @@
 
         .stat-label {
             font-size: 0.78rem;
+            font-weight: 600;
             margin-bottom: 4px;
         }
 
@@ -228,7 +230,7 @@
         th {
             color: var(--pink-title);
             font-size: 0.85rem;
-            font-weight: 600;
+            font-weight: 700;
             padding: 12px 10px;
             border-bottom: 1.5px solid #fde8ed;
             text-align: left;
@@ -237,6 +239,7 @@
         td {
             padding: 16px 10px;
             font-size: 0.85rem;
+            font-weight: 500;
             color: #44333a;
             border-bottom: 1px solid #f8eef1;
             vertical-align: middle;
@@ -259,7 +262,7 @@
             padding: 4px 12px;
             border-radius: 50px;
             font-size: 0.78rem;
-            font-weight: 500;
+            font-weight: 600;
         }
 
         .dot {
@@ -293,7 +296,7 @@
             color: #b5a5ac;
         }
 
-        /* --- Footer Section (ช่องทางติดต่อ) --- */
+        /* --- Footer Section --- */
         footer {
             margin-top: 20px;
             background: var(--card-white);
@@ -307,10 +310,9 @@
         }
 
         .footer-title {
-            font-family: 'Mali', cursive;
             color: var(--pink-title);
             font-size: 1.1rem;
-            font-weight: 600;
+            font-weight: 700;
             margin-bottom: 15px;
             display: flex;
             align-items: center;
@@ -337,6 +339,7 @@
             text-decoration: none;
             color: #55444b;
             font-size: 0.85rem;
+            font-weight: 600;
             border: 1px solid #f8d7e3;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
             transition: all 0.2s ease;
@@ -449,7 +452,7 @@
         </div>
     </div>
 
-    <!-- Footer Section (ช่องทางติดต่อ) -->
+    <!-- Footer Section -->
     <footer>
         <div class="footer-title">
             🌸 ช่องทางการติดต่อ 🌸

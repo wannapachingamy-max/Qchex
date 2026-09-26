@@ -18,7 +18,7 @@
             --pink-light: #ffe5ec;
             --pink-bg: #fff0f5;
             --pink-deep: #e05297;
-            --white-glass: rgba(255, 255, 255, 0.85);
+            --white-glass: rgba(255, 255, 255, 0.88);
             --text-color: #5a3e4d;
             --card-shadow: 0 10px 30px rgba(230, 100, 150, 0.15);
         }
@@ -34,14 +34,73 @@
         body {
             background-color: var(--pink-bg);
             background-image: 
-                radial-gradient(circle at 10% 20%, rgba(255, 182, 193, 0.4) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(255, 218, 224, 0.5) 0%, transparent 20%),
+                radial-gradient(circle at 10% 20%, rgba(255, 182, 193, 0.5) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(255, 218, 224, 0.6) 0%, transparent 20%),
                 radial-gradient(circle at 50% 50%, rgba(255, 240, 245, 1) 0%, rgba(255, 222, 233, 0.6) 100%);
             background-attachment: fixed;
             color: var(--text-color);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* --- Cute Background Decor (ก้อนเมฆและดาวดวงน้อย) --- */
+        .bg-decor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .cloud {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50px;
+            opacity: 0.7;
+            animation: floatCloud 25s linear infinite;
+        }
+
+        .cloud::before, .cloud::after {
+            content: '';
+            position: absolute;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+        }
+
+        .cloud-1 {
+            width: 120px; height: 40px; top: 10%; left: -150px;
+            animation-duration: 35s;
+        }
+        .cloud-1::before { width: 50px; height: 50px; top: -20px; left: 20px; }
+        .cloud-1::after { width: 40px; height: 40px; top: -15px; right: 20px; }
+
+        .cloud-2 {
+            width: 100px; height: 35px; top: 65%; left: -120px;
+            animation-duration: 28s; animation-delay: 5s;
+        }
+        .cloud-2::before { width: 40px; height: 40px; top: -15px; left: 15px; }
+        .cloud-2::after { width: 30px; height: 30px; top: -10px; right: 15px; }
+
+        @keyframes floatCloud {
+            0% { transform: translateX(-150px); }
+            100% { transform: translateX(100vw); }
+        }
+
+        .sparkle-icon {
+            position: absolute;
+            color: rgba(255, 182, 193, 0.8);
+            animation: pulseSparkle 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulseSparkle {
+            0% { transform: scale(0.8) rotate(0deg); opacity: 0.4; }
+            100% { transform: scale(1.2) rotate(15deg); opacity: 1; }
         }
 
         .container {
@@ -50,6 +109,8 @@
             padding: 20px;
             width: 100%;
             flex: 1;
+            position: relative;
+            z-index: 1;
         }
 
         /* --- Header Section --- */
@@ -57,10 +118,10 @@
             text-align: center;
             padding: 40px 20px;
             background: var(--white-glass);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
             border-radius: 30px;
             box-shadow: var(--card-shadow);
-            border: 2px solid rgba(255, 255, 255, 0.8);
+            border: 2px solid rgba(255, 255, 255, 0.9);
             margin-bottom: 25px;
             position: relative;
             overflow: hidden;
@@ -73,7 +134,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(255,192,203,0.3) 0%, transparent 60%);
+            background: radial-gradient(circle, rgba(255,192,203,0.35) 0%, transparent 60%);
             animation: rotateBg 20s linear infinite;
             z-index: 0;
         }
@@ -100,7 +161,7 @@
             -webkit-text-fill-color: transparent;
             position: relative;
             display: inline-block;
-            filter: drop-shadow(2px 4px 6px rgba(224, 82, 151, 0.2));
+            filter: drop-shadow(2px 4px 6px rgba(224, 82, 151, 0.25));
         }
 
         .subtitle {
@@ -114,17 +175,22 @@
             font-size: 0.95rem;
             color: #d84374;
             box-shadow: 0 4px 15px rgba(255, 158, 187, 0.3);
-            border: 1px dashed var(--pink-soft);
+            border: 1.5px dashed var(--pink-soft);
+            transition: transform 0.3s ease;
+        }
+
+        .subtitle:hover {
+            transform: scale(1.03);
         }
 
         /* --- Controls (Search & Filter) --- */
         .controls-card {
             background: var(--white-glass);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
             padding: 20px;
             border-radius: 20px;
             box-shadow: var(--card-shadow);
-            border: 1px solid rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.8);
             margin-bottom: 25px;
             display: flex;
             flex-wrap: wrap;
@@ -147,13 +213,13 @@
             outline: none;
             font-size: 0.95rem;
             transition: all 0.3s;
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.95);
             color: var(--text-color);
         }
 
         .search-box input:focus {
             border-color: var(--pink-deep);
-            box-shadow: 0 0 10px rgba(224, 82, 151, 0.2);
+            box-shadow: 0 0 12px rgba(224, 82, 151, 0.25);
         }
 
         .search-box i {
@@ -188,7 +254,7 @@
             background: var(--pink-main);
             color: white;
             border-color: var(--pink-main);
-            box-shadow: 0 4px 10px rgba(255, 158, 187, 0.4);
+            box-shadow: 0 4px 12px rgba(255, 158, 187, 0.45);
         }
 
         /* --- Stats Row --- */
@@ -201,12 +267,17 @@
 
         .stat-card {
             background: var(--white-glass);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
             border-radius: 20px;
             padding: 15px 10px;
             text-align: center;
             box-shadow: var(--card-shadow);
-            border: 1px solid rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
         }
 
         .stat-label {
@@ -232,10 +303,10 @@
         /* --- Table Section --- */
         .table-card {
             background: var(--white-glass);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
             border-radius: 25px;
             box-shadow: var(--card-shadow);
-            border: 1px solid rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.8);
             overflow: hidden;
             padding: 10px;
         }
@@ -268,7 +339,7 @@
 
         tbody tr:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 158, 187, 0.25);
+            box-shadow: 0 6px 18px rgba(255, 158, 187, 0.28);
         }
 
         td {
@@ -291,13 +362,27 @@
             border-bottom-right-radius: 15px;
         }
 
+        /* --- ✨ เพิ่มไฟสถานะสวยๆ (Glowing Status Badges) --- */
         .badge {
             padding: 6px 14px;
             border-radius: 50px;
             font-size: 0.8rem;
             font-weight: 600;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
             text-align: center;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+        }
+
+        /* ไฟสถานะเปร่งประกาย (LED Glow Dot) */
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+            position: relative;
         }
 
         .badge-waiting {
@@ -305,17 +390,36 @@
             color: #d9480f;
             border: 1px solid #ffd8a8;
         }
+        .badge-waiting .status-dot {
+            background-color: #f59f00;
+            box-shadow: 0 0 8px #f59f00;
+            animation: pulseGlow 1.5s infinite alternate;
+        }
 
         .badge-doing {
             background-color: #e7f5ff;
             color: #1971c2;
             border: 1px solid #a5d8ff;
         }
+        .badge-doing .status-dot {
+            background-color: #339af0;
+            box-shadow: 0 0 8px #339af0;
+            animation: pulseGlow 1s infinite alternate;
+        }
 
         .badge-done {
             background-color: #ebfbee;
             color: #2b8a3e;
             border: 1px solid #b2f2bb;
+        }
+        .badge-done .status-dot {
+            background-color: #40c057;
+            box-shadow: 0 0 8px #40c057;
+        }
+
+        @keyframes pulseGlow {
+            0% { opacity: 0.4; transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1.2); }
         }
 
         .loading-state, .empty-state {
@@ -328,13 +432,15 @@
         footer {
             margin-top: 40px;
             background: var(--white-glass);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
             border-top-left-radius: 30px;
             border-top-right-radius: 30px;
             padding: 30px 20px;
             box-shadow: 0 -10px 30px rgba(230, 100, 150, 0.08);
             border-top: 1px solid rgba(255, 255, 255, 0.8);
             text-align: center;
+            position: relative;
+            z-index: 1;
         }
 
         .footer-title {
@@ -399,6 +505,15 @@
     </style>
 </head>
 <body>
+
+    <!-- Background Decor -->
+    <div class="bg-decor">
+        <div class="cloud cloud-1"></div>
+        <div class="cloud cloud-2"></div>
+        <i class="fa-solid fa-sparkles sparkle-icon" style="top: 15%; left: 8%; font-size: 1.2rem;"></i>
+        <i class="fa-solid fa-star sparkle-icon" style="top: 25%; right: 10%; font-size: 1rem; animation-delay: 1s;"></i>
+        <i class="fa-solid fa-heart sparkle-icon" style="bottom: 20%; left: 5%; font-size: 1.1rem; animation-delay: 1.5s;"></i>
+    </div>
 
     <div class="container">
         <!-- Header -->
@@ -577,7 +692,10 @@
                         <td style="font-weight: 600;">${item.name}</td>
                         <td>${item.detail}</td>
                         <td style="text-align: center;">
-                            <span class="badge ${badgeClass}">${statusText}</span>
+                            <span class="badge ${badgeClass}">
+                                <span class="status-dot"></span>
+                                ${statusText}
+                            </span>
                         </td>
                         <td style="color: #888;">${item.date}</td>
                     </tr>

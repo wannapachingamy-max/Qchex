@@ -4,10 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Check Q ร้านตั้ม</title>
-    <!-- ดึงฟอนต์ Kodchasan (ฟอนต์ตัวมนหนา นุ่ม แบบในรูปเป๊ะๆ) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kodchasan:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- เรียกใช้ฟอนต์ขันติ -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Khanti:wght@400;500;600;700&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -22,12 +20,17 @@
             --shadow-soft: 0 8px 25px rgba(235, 123, 155, 0.1);
         }
 
-        /* บังคับใช้ฟอนต์ Kodchasan ทั้งหมด */
+        /* ตั้งค่าฟอนต์ขันติกับทุกส่วนของหน้าเว็บ */
+        @font-face {
+            font-family: 'Khanti';
+            src: local('Khanti'), local('ขันติ');
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Kodchasan', sans-serif !important;
+            font-family: 'Khanti', 'Kodchasan', sans-serif !important;
         }
 
         body {
